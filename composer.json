@@ -1,0 +1,18 @@
+{
+    "name": "ijalandhika/background-handler",
+    "description": "background handler for sanasini",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^2.0",
+        "davegardnerisme/nsqphp": "dev-master",
+        "elasticsearch/elasticsearch": "^2.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ijalandhika",
+            "email": "ijalandhika@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
