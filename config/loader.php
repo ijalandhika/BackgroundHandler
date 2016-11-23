@@ -13,7 +13,9 @@ $di = new CliDI();
  $loader = new \Phalcon\Loader();
  $loader->registerDirs(
      array(
-     	realpath(__DIR__ . "/../app/tasks/")
+     	realpath(__DIR__ . "/../app/tasks/"),
+     	realpath(__DIR__ . "/../app/libraries/"),
+     	realpath(__DIR__ . "/../app/models/")
      )
  );
  $loader->register();

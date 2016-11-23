@@ -1,5 +1,10 @@
 <?php 
 
 return new \Phalcon\Config(array(
-	'test' => getenv('test')
+	'environment' => getenv('ENVIRONMENT'),
+	'version' 	=> getenv('VERSION'),
+	'instagram' => array(
+		'api_url' 		=> getenv('API_URL'),
+		'access_token' 	=> getenv('ACCESS_TOKEN')
+	) 
 ));

@@ -5,7 +5,8 @@
     "require": {
         "vlucas/phpdotenv": "^2.0",
         "davegardnerisme/nsqphp": "dev-master",
-        "elasticsearch/elasticsearch": "^2.1"
+        "elasticsearch/elasticsearch": "^2.1",
+        "haridarshan/instagram-php": "^2.2"
     },
     "license": "MIT",
     "authors": [
