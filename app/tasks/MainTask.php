@@ -10,4 +10,10 @@ class MainTask extends \Phalcon\CLI\Task
     	$instagram = new InstagramTask();
     	$instagram->InstagramUser($params[0]);
     }
+
+    public function grabTwitterAction(array $params){
+    	$twitter = new TwitterTask();
+    	$twitter->InitializeConnection();
+    	$twitter->TwitterUser($params[0]);
+    }
 }
