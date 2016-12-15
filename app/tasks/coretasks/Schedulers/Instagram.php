@@ -3,7 +3,7 @@ namespace CoreTasks\Schedulers;
 /**
  * Scheduler to get data from instagram
  *
- * php cli.php scheduler main task=instagram
+ * php cli.php scheduler main task=instagram username=ijalandhika
  */
 use CoreTasks\CoreTask;
 
@@ -39,7 +39,9 @@ class Instagram extends CoreTask
 		$medias = $this->CurlLink($url);
 
 		// to do insert to databases
-		print_r($medias);
+		$x = new NsqPublisher();
+		$x->PushToNsq($medias);
+		//print_r($this->composer);//die;
 	}
 
 	protected function DefinedDataUsed($data){

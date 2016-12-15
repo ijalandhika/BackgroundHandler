@@ -16,6 +16,12 @@ abstract class CoreTask
         return $this;
     }
 
+    public function _setComposer($composer)
+    {
+        $this->composer = $composer;
+        return $this;
+    }
+
     public function CurlLink($baseUrl){
 		$result = [];
 		try{

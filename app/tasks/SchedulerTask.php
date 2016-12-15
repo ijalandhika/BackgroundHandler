@@ -44,6 +44,9 @@ class SchedulerTask extends \Phalcon\CLI\Task
         $coreTask->_setParams($params);
 
         $coreTask->_setConfig($this->getDI()->getConfig());
+
+        global $composer; 
+        $coreTask->_setComposer($composer);
         return $coreTask->Invoke();
 	}
 }
