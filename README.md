@@ -47,7 +47,7 @@
 	    -F 'client_secret=c2ad95ab70974196b425c4ba50afd2ad' \
 	    -F 'grant_type=authorization_code' \
 	    -F 'redirect_uri=https://ijalandhika.wordpress.com' \
-	    -F 'code=27cc1418d24441ef9eb1690c35e0a749' \
+	    -F 'code=926b61474d4544d78396d2f0c2a55a4a' \
 	    https://api.instagram.com/oauth/access_token
 
 	will generate like below code

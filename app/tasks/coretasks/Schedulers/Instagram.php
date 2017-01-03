@@ -21,10 +21,10 @@ class Instagram extends CoreTask
 
 	private function InstagramUser()
 	{
-		$url = $this->config->instagram->api_url.'users/search?q='.$this->username.'&access_token='.$this->config->instagram->access_token;		
+		$url = $this->config->instagram->api_url.'users/search?q='.$this->username.'&access_token='.$this->config->instagram->access_token;
 		$users = $this->CurlLink($url);
 
-		if($users['status'] == '1'){
+		if($users['status'] == '1' && isset($users['data']) ){
 			foreach ($users['data'] as $key => $value) {
 				$this->InstagramMedia($value['id']);
 			}	
@@ -37,11 +37,16 @@ class Instagram extends CoreTask
 	{
 		$url = $this->config->instagram->api_url.'users/'.$userid.'/media/recent?count=10&access_token='.$this->config->instagram->access_token;	
 		$medias = $this->CurlLink($url);
-
-		// to do insert to databases
-		$x = new NsqPublisher();
-		$x->PushToNsq($medias);
-		//print_r($this->composer);//die;
+		
+		foreach ($medias['data'] as $key => $value) {
+			$payload = [
+				"task"=>"elastic.search",
+				"detail" => $value
+			];	
+			$publisher = new NsqPublisher();
+			$publisher->PushToNsq($payload);	
+		}
+		
 	}
 
 	protected function DefinedDataUsed($data){

@@ -16,9 +16,31 @@ class NsqSubscriber extends CoreTask
 	    $nsq = new \nsqphp\nsqphp($lookup);
 	    $nsq->subscribe('mytopic', 'somechannel', function ($msg){	    	
         	// to do process to db
-        	print_r($msg->getPayload());
-        	echo "\n";
-
+        	$payload = json_decode($msg->getPayload(),true);
+        	$this->Process($payload);
+        	
 	    })->run();
+	}
+
+	private function Process($payload)
+	{
+    	$studly = function($str){
+            $str = ucwords(str_replace('.', ' ', trim($str)));
+            return str_replace(' ', '', $str);
+        };
+
+        $coreTask = 'CoreTasks\Process\\'.$studly($payload['task']);
+        if (!class_exists($coreTask))
+        {
+            echo " ~> undefined task {$coreTask}\n";
+            return 1;
+        }
+        $coreTask = new $coreTask();
+        if (!$coreTask instanceof \CoreTasks\CoreTask) {
+            echo " ~> task must be instance of CoreTasks\\CoreTask\n";
+            return 1;
+        }
+        $coreTask->_setParams($payload);
+        return $coreTask->Invoke();
 	}
 }
