@@ -16,7 +16,8 @@ class InstagramModel
 			"user" => $request['user'],
 			"link" => $request['link'],
 			"location" => $request['location'],
-			"created_time" => $request['created_time']
+			"created_time" => $request['created_time'],
+			"source" => $request['source']
 		];
 		$payload['detail'] = $this->GetPayloadType($request);
 

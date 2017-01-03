@@ -43,6 +43,7 @@ class Instagram extends CoreTask
 				"task"=>"elastic.search",
 				"detail" => $value
 			];	
+			$payload['detail']['source'] = 'instagram';
 			$publisher = new NsqPublisher();
 			$publisher->PushToNsq($payload);	
 		}
